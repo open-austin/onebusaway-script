@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="transitDataService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://localhost:8080/onebusaway-transit-data-federation-webapp/remoting/transit-data-service" />
+        <property name="serviceInterface" value="org.onebusaway.transit_data.services.TransitDataService" />
+    </bean>
+
+    <!-- Database Connection Configuration -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost/oba" />
+        <property name="username" value="vincentliao" />
+        <property name="password" value="" />
+    </bean>
+
+    <!--
+        The Geocoder is used in the SMS interface for determining your default search location. The DefaultGeocoderImpl doesn't actually do much geocoding... it's just there for testing
+    -->
+    <bean id="externalGeocoderImpl" class="org.onebusaway.geocoder.impl.FixedGeocoderImpl">
+        <property name="lat" value="42.345" />
+        <property name="lon" value="-71.083" />
+        <property name="city" value="Boston" />
+        <property name="state" value="MA" />
+        <property name="postalCode" value="02116" />
+    </bean>
+
+    <bean id="serviceAreaServiceImpl" class="org.onebusaway.presentation.impl.ServiceAreaServiceImpl">
+        <property name="defaultBounds">
+            <bean class="org.onebusaway.geospatial.model.CoordinateBounds">
+                <property name="minLat" value="42.237" />
+                <property name="minLon" value="-71.247" />
+                <property name="maxLat" value="42.452" />
+                <property name="maxLon" value="-70.945" />
+            </bean>
+        </property>
+        <property name="calculateDefaultBoundsFromAgencyCoverage" value="false" />
+    </bean>
+
+    <bean id="wikiDocumentService" class="org.onebusaway.wiki.xwiki.impl.XWikiDocumentServiceImpl">
+        <property name="xwikiUrl" value="http://wiki.onebusaway.org" />
+    </bean>
+
+    <bean id="wikiRenderingService" class="org.onebusaway.wiki.xwiki.impl.XWikiRenderingServiceImpl">
+        <property name="wikiDocumentViewUrl" value="/onebusaway-webapp/p/%{documentName}.action" />
+        <property name="wikiDocumentEditUrl" value="http://wiki.onebusaway.org/bin/edit/Main/%{documentName}" />
+        <property name="wikiAttachmentUrl" value="http://wiki.onebusaway.org/bin/download/Main/%{documentName}/%{attachmentName}" />
+    </bean>
+
+    <!-- Tells ehCache to use a different name for the cache (to avoid conflicting with other onebusaway webapps)  -->
+    <bean class="org.onebusaway.container.spring.PropertyOverrideConfigurer">
+        <property name="properties">
+            <props>
+                <prop key="cacheManager.cacheManagerName">org.onebusaway.webapp.cacheManager</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+    <!-- Define your bundle path.  You can also do this externally with a "bundlePath" System property -->
+    <bean class="org.onebusaway.container.spring.SystemPropertyOverrideConfigurer">
+        <property name="order" value="-2" />
+        <property name="properties">
+            <props>
+                <prop key="bundlePath">/Users/vincentliao/stash/onebusaway_spinup_script/obatemp/apache-tomcat-9.0.0.M1/obastuff/bundledata</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Database Connection Configuration -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost/oba" />
+        <property name="username" value="vincentliao" />
+        <property name="password" value="" />
+    </bean>
+
+    <bean class="org.onebusaway.transit_data_federation.impl.realtime.gtfs_realtime.GtfsRealtimeSource">
+        <property name="tripUpdatesUrl" value="https://data.texas.gov/download/rmk2-acnw/application/octet-stream" />
+        <property name="vehiclePositionsUrl" value="https://data.texas.gov/download/i5qp-g5fd/application/octet-stream" />
+        <property name="alertsUrl" value="https://data.texas.gov/download/nusn-7fcn/application/octet-stream" />
+        <!-- Optionally set the refresh interval - how often we query the URLs, in seconds (default=30) -->
+        <property name="refreshInterval" value="30"/>
+    </bean>
+</beans>

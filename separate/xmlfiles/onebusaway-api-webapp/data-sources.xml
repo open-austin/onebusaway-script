@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- Specify our transit data source (from the onebusaway-transit-data-federation-webapp)-->
+    <bean id="transitDataService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://localhost:8080/onebusaway-transit-data-federation-webapp/remoting/transit-data-service" />
+        <property name="serviceInterface" value="org.onebusaway.transit_data.services.TransitDataService" />
+    </bean>
+
+    <!-- Database Connection Configuration - Used to manage user account information.
+    (NOTE: It's recommended to use a stand-alone DBMS instead of embedded HSQLDB for a production instance
+    -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost/oba" />
+        <property name="username" value="vincentliao" />
+        <property name="password" value="" />
+    </bean>
+
+    <bean id="externalGeocoderImpl" class="org.onebusaway.geocoder.impl.FixedGeocoderImpl">
+        <property name="lat" value="42.345" />
+        <property name="lon" value="-71.083" />
+        <property name="city" value="Boston" />
+        <property name="state" value="MA" />
+        <property name="postalCode" value="02116" />
+    </bean>
+
+    <!-- Service that is used to verify API keys -->
+    <bean id="apiKeyValidationService" class="org.onebusaway.users.impl.validation.KeyValidationServiceImpl" />
+
+    <!-- Allows the TEST key for OBA API testing.  Should be removed in production -->
+    <bean class="org.onebusaway.users.impl.CreateApiKeyAction">
+        <property name="key" value="TEST"/>
+    </bean>
+
+    <!-- Tells ehCache to use a different name for the cache (to avoid conflicting with other onebusaway webapps)  -->
+    <bean class="org.onebusaway.container.spring.PropertyOverrideConfigurer">
+        <property name="properties">
+            <props>
+                <prop key="cacheManager.cacheManagerName">org.onebusaway.api_webapp.cacheManager</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
