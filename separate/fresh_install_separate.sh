@@ -42,30 +42,30 @@ TOMCATUSERSFILE="tomcat-users.xml"
 mkdir obatemp
 cd obatemp
 
-# #Retrieve Tomcat Server
-# echo "Downloading Tomcat Server..."
-# curl -L -o $TOMCATSERVERFILE $TOMCATSERVERURL
-# echo "Tomcat Server downloaded!"
+#Retrieve Tomcat Server
+echo "Downloading Tomcat Server..."
+curl -L -o $TOMCATSERVERFILE $TOMCATSERVERURL
+echo "Tomcat Server downloaded!"
 
-# #Retrieve GTFS data for Austin
-# echo "Downloading GTFS Data..."
-# curl -L -o $GTFSFILE $GTFSURL
-# echo "GTFS Data downloaded!"
+#Retrieve GTFS data for Austin
+echo "Downloading GTFS Data..."
+curl -L -o $GTFSFILE $GTFSURL
+echo "GTFS Data downloaded!"
 
-# #Retrieve GTFS Database Loader
-# echo "Downloading GTFS Database Loader..."
-# curl -L -o $DATABASELOADERFILE $DATABASELOADERURL
-# echo "GTFS Database Loader downloaded!"
+#Retrieve GTFS Database Loader
+echo "Downloading GTFS Database Loader..."
+curl -L -o $DATABASELOADERFILE $DATABASELOADERURL
+echo "GTFS Database Loader downloaded!"
 
-# #Retrieve Postgres JDBC Driver
-# echo "Downloading Postgres JDBC Driver..."
-# curl -L -o $PSQLJDBCDRIVERFILE $PSQLJDBCDRIVERURL
-# echo "Postgres JDBC Driver downloaded!"
+#Retrieve Postgres JDBC Driver
+echo "Downloading Postgres JDBC Driver..."
+curl -L -o $PSQLJDBCDRIVERFILE $PSQLJDBCDRIVERURL
+echo "Postgres JDBC Driver downloaded!"
 
-# #Retrieve Transit Data Builder
-# echo "Downloading Transit Data Builder..."
-# curl -L -o $TRANSITDATABUILDERFILE $TRANSITDATABUILDERURL
-# echo "Transit Data Builder downloaded!"
+#Retrieve Transit Data Builder
+echo "Downloading Transit Data Builder..."
+curl -L -o $TRANSITDATABUILDERFILE $TRANSITDATABUILDERURL
+echo "Transit Data Builder downloaded!"
 
 #Clone onebusaway-application-modules codebase
 echo "Downloading onebusaway-application-modules from github..."
