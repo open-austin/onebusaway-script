@@ -51,4 +51,4 @@ You'll also need to set up a database and point the data-sources.xml to it. We u
 
 Released to the public domain under [the Unlicense](http://unlicense.org/).
 
-To the extent possible under law, Vincent Liao and other Open Austin contributors have waived all copyright and related or neighboring rights to this work.
+To the extent possible under law, [Vincent Liao](https://github.com/vinceis1337) and other Open Austin contributors have waived all copyright and related or neighboring rights to this work.
