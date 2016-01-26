@@ -32,10 +32,10 @@ OBAPRESENTATIONJAR="onebusaway-presentation-1.1.14.jar"
 
 #Latest Tomcat Server can be found at:
 #http://tomcat.apache.org/index.html
-TOMCATSERVERURL="http://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-9/v9.0.0.M1/bin/apache-tomcat-9.0.0.M1.tar.gz"
-TOMCATSERVERFILE="apache-tomcat-9.0.0.M1.tar.gz"
+TOMCATSERVERURL="http://www.motorlogy.com/apache/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz"
+TOMCATSERVERFILE="apache-tomcat-8.0.30.tar.gz"
 #Folder name is the same as the URL end part without the tar.gz
-TOMCATSERVERFOLDER="apache-tomcat-9.0.0.M1"
+TOMCATSERVERFOLDER="apache-tomcat-8.0.30"
 
 PSQLJDBCDRIVERURL="https://jdbc.postgresql.org/download/postgresql-9.4.1207.jar"
 PSQLJDBCDRIVERFILE="postgresql-9.4.1207.jar"
