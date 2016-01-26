@@ -44,7 +44,7 @@ CATALINAPROPERTIESFILE="catalina.properties"
 TOMCATUSERSFILE="tomcat-users.xml"
 ##########################
 
-mkdir obatemp
+mkdir -f obatemp
 cd obatemp
 
 #Retrieve Tomcat Server
