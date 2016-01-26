@@ -6,7 +6,7 @@ This is a collection of some scripts we're using to run OneBusAway in Austin. Fe
 
 Choose combined or separate webapps. :warning: Combined currently does not work.
 
-Inside will be either one or more data-sources.xml files (in xmlfiles folder for separate).
+Inside will be either one or more `data-sources.xml` files (in xmlfiles folder for separate).
 
 You must edit these to match your settings.
 
