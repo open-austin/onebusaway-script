@@ -10,6 +10,12 @@ Inside will be either one or more `data-sources.xml` files (in xmlfiles folder f
 
 You must edit these to match your settings.
 
+```
+separate/xmlfiles/onebusaway-api-webapp/data-sources.xml
+separate/xmlfiles/onebusaway-transit-data-federation-webapp/data-sources.xml
+separate/xmlfiles/onebusaway-webapp/data-sources.xml
+```
+
 Once you have done this, you can optionally edit the script itself if you need to tweak it. All the variables are provided at the top for easier editing.
 
 Then all you have to do is type:
