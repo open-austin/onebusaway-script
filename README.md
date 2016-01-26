@@ -35,7 +35,7 @@ For ubuntu 14, we needed to install:
 
 ```
 sudo apt-get install git
-sudo apt-get install openjdk-7-jre-headless
+sudo apt-get install openjdk-7-jdk
 sudo apt-get install maven
 ```
 
