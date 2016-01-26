@@ -80,7 +80,7 @@ cd $OBACODEBASEFOLDER
 git stash
 git stash drop
 echo "Reset to master!"
-git checkout 
+git checkout $OBAVERSIONTAG
 cd ..
 echo "Set to version 1.1.14!"
 
