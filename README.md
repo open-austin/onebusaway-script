@@ -29,6 +29,18 @@ bash fresh_install_combined.sh
 to start the script!
 
 
+## Requirements
+
+For ubuntu 14, we needed to install:
+
+```
+sudo apt-get install git
+sudo apt-get install openjdk-7-jre-headless
+sudo apt-get install maven
+```
+
+You'll also need to set up a database and point the data-sources.xml to it. We used Postgres on AWS RDS.
+
 ## License
 
 Released to the public domain under [the Unlicense](http://unlicense.org/).
