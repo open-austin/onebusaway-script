@@ -1,3 +1,9 @@
+# onebusaway-script
+
+This is a collection of some scripts we're using to run OneBusAway in Austin. Feel free to copypasta whatever you'd like. Who knows if it works.
+
+### 
+
 To use this script:
 
 Choose combined or separate webapps. Combined currently does not work.
@@ -19,3 +25,10 @@ cd combined
 sh fresh_install_combined.sh
 ```
 to start the script!
+
+
+## License
+
+Released to the public domain under [the Unlicense](http://unlicense.org/).
+
+To the extent possible under law, Vincent Liao and other Open Austin contributors have waived all copyright and related or neighboring rights to this work.
