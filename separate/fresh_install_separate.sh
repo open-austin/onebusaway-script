@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
 echo "OneBusAway Quick Instance Spinup Script"
 echo "v0.1"
 echo "By Vincent Liao"
