@@ -47,6 +47,38 @@ sudo apt-get install maven
 
 You'll also need to set up a database and point the data-sources.xml to it. We used Postgres on AWS RDS.
 
+
+## Updating the server
+
+Deploying GTFS url changes to the austin OneBusAway server
+
+```
+# Deploying GTFS url changes to the austin OneBusAway server
+#
+# First make any config changes to /var/www/onebusaway-script/separate/xmlfiles/onebusaway-transit-data-federation-webapp/data-sources.xml
+# The relevant section is usually
+# <bean class="org.onebusaway.transit_data_federation.impl.realtime.gtfs_realtime.GtfsRealtimeSource">
+#     <property name="tripUpdatesUrl" value="http://localhost:6996/protobuf?url=https://data.texas.gov/download/rmk2-acnw/application/octet-stream" />
+#     <property name="vehiclePositionsUrl" value="http://localhost:6996/protobuf?url=https://data.texas.gov/download/eiei-9rpf/application/octet-stream" />
+#     <property name="alertsUrl" value="https://data.texas.gov/download/nusn-7fcn/application/octet-stream" />
+#     <!-- Optionally set the refresh interval - how often we query the URLs, in seconds (default=30) -->
+#     <property name="refreshInterval" value="5"/>
+# </bean>
+
+BUILD_DIR='/var/www/onebusaway-script/separate/obatemp/'
+CONFIG_DIR='/var/www/onebusaway-script/separate/xmlfiles/'
+
+cp $CONFIG_DIR/onebusaway-transit-data-federation-webapp/data-sources.xml $BUILD_DIR/onebusaway-application-modules/onebusaway-transit-data-federation-webapp/src/main/resources/
+cd $BUILD_DIR/onebusaway-application-modules/onebusaway-transit-data-federation-webapp
+mvn package
+
+bash $BUILD_DIR/apache-tomcat-8.0.30/bin/shutdown.sh
+cp $BUILD_DIR/onebusaway-application-modules/onebusaway-transit-data-federation-webapp/target/onebusaway-transit-data-federation-webapp.war $BUILD_DIR/apache-tomcat-8.0.30/webapps
+bash $BUILD_DIR/apache-tomcat-8.0.30/bin/startup.sh
+
+tail -f $BUILD_DIR/apache-tomcat-8.0.30/logs/*
+```
+
 ## License
 
 Released to the public domain under [the Unlicense](http://unlicense.org/).
