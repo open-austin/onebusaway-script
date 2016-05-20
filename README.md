@@ -18,6 +18,21 @@ separate/xmlfiles/onebusaway-webapp/data-sources.xml
 
 Once you have done this, you can optionally edit the script itself if you need to tweak it. All the variables are provided at the top for easier editing.
 
+Finally, don't forget to edit this block in the script:
+```
+#Load Transit Bundle Data into SQL Database
+echo "Sending Bundle Data to Postgres Database... (This takes a while)"
+java -classpath $DATABASELOADERFILE:$PSQLJDBCDRIVERFILE \
+ org.onebusaway.gtfs.GtfsDatabaseLoaderMain \
+ --driverClass=org.postgresql.Driver \
+ --url=jdbc:postgresql://localhost/oba \
+ --username=vincentliao \
+ --password="" \
+ ./gtfs.zip
+echo "Complete!"
+```
+Username and password will obviously be different, but you could also add it to a different database type using the respective JDBC driver.
+
 Then all you have to do is type:
 
 ```
